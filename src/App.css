@@ -1,0 +1,29 @@
+:root {
+  --navy: #0D3B66;
+  --light: #FAF0CA;
+  --yellow: #F4D35E;
+  --orange: #EE964B;
+  --red: #F95738;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap');
+
+body {
+  background-color: var(--light);
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.header__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header__title {
+  color: var(--navy);
+  font-family: 'Mouse Memoirs';
+  font-size: 5vw;
+}
