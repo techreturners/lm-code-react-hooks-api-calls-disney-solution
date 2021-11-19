@@ -5,6 +5,7 @@ body {
   display: flex;
   justify-content: center;
   margin: 0;
+  font-family: 'Mouse Memoirs';
 }
 
 .header__container {
@@ -15,6 +16,5 @@ body {
 }
 
 .header__title {
-  font-family: 'Mouse Memoirs';
   font-size: 5vw;
 }
