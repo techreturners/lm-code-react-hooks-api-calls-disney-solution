@@ -40,3 +40,24 @@ body {
   border-radius: 5%;
   margin: 10px;
 }
+
+.navigation {
+  display: flex;
+  flex-flow: row wrap;
+  text-align: center;
+}
+
+.navigation-item {
+  flex: 1;
+}
+
+.navigation-button {
+  font-family: 'Mouse Memoirs';
+  background-color: #555;
+  border-radius: 4px;
+  font-size: 3vh;
+  padding: 10px;
+  color: #FFF;
+  cursor: pointer;
+  min-width: 50px;
+}

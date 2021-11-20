@@ -3,9 +3,8 @@ import './App.css';
 import axios from 'axios';
 import Header from './components/Header';
 import CharacterContainer from './components/CharacterContainer';
-import { useState, useEffect } from 'react';
-
-
+import Navigation from './components/Navigation';
+import { useState, useEffect, useCallback } from 'react';
 
 function App() {
 
@@ -13,19 +12,23 @@ function App() {
   // favourite characters
 
   const [characters, setCharacters] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const getCharacters = useCallback(async () => {
+    const characterResults = await axios.get(`http://api.disneyapi.dev/characters?page=${currentPage}`);
+    setCharacters(characterResults.data.data);
+  }, [currentPage]);
 
   useEffect(() => {
     getCharacters();
-  }, []);
+  }, [getCharacters]);
 
-  const getCharacters = async () => {
-    const characterResults = await axios.get('http://api.disneyapi.dev/characters');
-    setCharacters(characterResults.data.data);
-  }
+  
 
   return (
     <>
       <Header />
+      <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <CharacterContainer characters={characters} />
     </>
   );

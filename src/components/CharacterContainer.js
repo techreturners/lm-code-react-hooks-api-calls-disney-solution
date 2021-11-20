@@ -6,7 +6,7 @@ function CharacterContainer({characters}) {
         let rows = [], cols = [];
         characters.forEach((character, index) => {
             cols.push(<Character key={character._id} character={character} />);
-            if ((index + 1) % 4 === 0) {
+            if ((index + 1) % 5 === 0) {
                 rows.push(
                     <div className="character-row" key={index}>
                         {cols}
