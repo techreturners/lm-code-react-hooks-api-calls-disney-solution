@@ -4,7 +4,7 @@ import axios from 'axios';
 import Header from './components/Header';
 import CharacterContainer from './components/CharacterContainer';
 import Navigation from './components/Navigation';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
 
@@ -14,14 +14,18 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const getCharacters = useCallback(async () => {
-    const characterResults = await axios.get(`http://api.disneyapi.dev/characters?page=${currentPage}`);
+  const getCharacters = async (pageNumber) => {
+    const characterResults = await axios.get(`http://api.disneyapi.dev/characters?page=${pageNumber}`);
     setCharacters(characterResults.data.data);
-  }, [currentPage]);
+  };
 
   useEffect(() => {
-    getCharacters();
-  }, [getCharacters]);
+    getCharacters(1);
+  }, []);
+
+  useEffect(() => {
+    getCharacters(currentPage);
+  }, [currentPage]);
 
   
 
