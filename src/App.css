@@ -17,6 +17,27 @@ body {
   font-size: 5vw;
 }
 
+.navigation {
+  display: flex;
+  flex-flow: row wrap;
+  text-align: center;
+}
+
+.navigation-item {
+  flex: 1;
+}
+
+.navigation-button {
+  font-family: 'Mouse Memoirs';
+  background-color: #555;
+  border-radius: 4px;
+  font-size: 3vh;
+  padding: 10px;
+  color: #FFF;
+  cursor: pointer;
+  min-width: 50px;
+}
+
 .character-container {
   max-width: 90%;
   margin: 0 auto;
@@ -38,26 +59,15 @@ body {
   flex: 1;
   border: 3px solid #666;
   border-radius: 5%;
+  flex-direction: column;
+  justify-content: space-between;
   margin: 10px;
+  height: 440px;
 }
 
-.navigation {
-  display: flex;
-  flex-flow: row wrap;
-  text-align: center;
-}
-
-.navigation-item {
-  flex: 1;
-}
-
-.navigation-button {
-  font-family: 'Mouse Memoirs';
-  background-color: #555;
-  border-radius: 4px;
-  font-size: 3vh;
+.character-actions {
+  font-size: 2vh;
   padding: 10px;
-  color: #FFF;
   cursor: pointer;
-  min-width: 50px;
 }
+

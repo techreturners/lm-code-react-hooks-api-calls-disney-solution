@@ -1,3 +1,4 @@
+
 function Character({character}) {
 
     // Image URL needs processing
@@ -7,8 +8,16 @@ function Character({character}) {
     }
     return (
       <article className="character-item">
-          <h1>{character.name}</h1>
-          <img src={imageSrc} alt={character.name} />
+          <div>
+            <h1>{character.name}</h1>
+          </div>
+          <div className="character-actions">
+            Add to Favourites
+          </div>
+          <div>
+            <img src={imageSrc} alt={character.name} />
+          </div>
+          
       </article>
     )
   }

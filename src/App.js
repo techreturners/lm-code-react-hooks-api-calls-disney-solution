@@ -15,19 +15,22 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const getCharacters = async (pageNumber) => {
+
+    // Utilised Axios for API calls
     const characterResults = await axios.get(`http://api.disneyapi.dev/characters?page=${pageNumber}`);
     setCharacters(characterResults.data.data);
   };
 
+  // This is called on first load
   useEffect(() => {
     getCharacters(1);
   }, []);
 
+  // Side effect of current page changing is
+  // to fetch the next page of Disney character data
   useEffect(() => {
     getCharacters(currentPage);
   }, [currentPage]);
-
-  
 
   return (
     <>

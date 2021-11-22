@@ -18,6 +18,9 @@ function Navigation({currentPage, setCurrentPage}) {
                 <button className="navigation-button" onClick={prevPage}>Prev Page</button>
             </div>
             <div className="navigation-item">
+                <button className="navigation-button" onClick={prevPage}>Show Favourites</button>
+            </div>
+            <div className="navigation-item">
                 <button className="navigation-button" onClick={nextPage}>Next Page</button>
             </div>
         </div>
