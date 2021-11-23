@@ -3,6 +3,7 @@
 .page {
   margin: 0;
   font-family: "Mouse Memoirs";
+  background-color: #bde0fe;
 }
 
 .header__container {
@@ -62,6 +63,7 @@
   justify-content: space-between;
   margin: 10px;
   height: 440px;
+  background-color: #ffafcc;
 }
 
 .character-item__img {
@@ -69,7 +71,7 @@
 }
 
 .character-item__actions {
-  font-size: 1.2em;
+  font-size: 1.3em;
   padding: 10px;
   cursor: pointer;
   font-weight: lighter;
