@@ -4,15 +4,17 @@ import axios from 'axios';
 import Header from './components/Header';
 import CharacterContainer from './components/CharacterContainer';
 import Navigation from './components/Navigation';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+
+export const FavouritesContext = React.createContext();
 
 function App() {
 
   // Maybe make use of useContext for a collection of 
   // favourite characters
-
   const [characters, setCharacters] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [favourites, setFavourites] = useState([]);
 
   const getCharacters = async (pageNumber) => {
 
@@ -34,9 +36,11 @@ function App() {
 
   return (
     <>
-      <Header />
-      <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      <CharacterContainer characters={characters} />
+      <FavouritesContext.Provider value={favourites}>
+        <Header />
+        <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        <CharacterContainer characters={characters} />
+      </FavouritesContext.Provider>
     </>
   );
 }
