@@ -22,8 +22,6 @@ export function FavouritesProvider({ children }) {
         else {
             removeFavourite(characterId);
         }
-
-        console.log(favourites);
     }
 
     function addFavourite(characterId) {

@@ -33,11 +33,13 @@ function App() {
   }, [currentPage]);
 
   return (
-    <FavouritesProvider>
-      <Header />
-      <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      <CharacterContainer characters={characters} />
-    </FavouritesProvider>
+    <div className="page">
+      <FavouritesProvider>
+        <Header />
+        <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        <CharacterContainer characters={characters} />
+      </FavouritesProvider>
+    </div>
   );
 }
 
