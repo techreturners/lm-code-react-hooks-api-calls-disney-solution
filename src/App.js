@@ -1,12 +1,11 @@
 
 import './App.css';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from './components/Header';
 import CharacterContainer from './components/CharacterContainer';
+import { FavouritesProvider } from './context/FavouritesContext';
 import Navigation from './components/Navigation';
-import React, { useState, useEffect } from 'react';
-
-export const FavouritesContext = React.createContext();
 
 function App() {
 
@@ -14,7 +13,6 @@ function App() {
   // favourite characters
   const [characters, setCharacters] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [favourites, setFavourites] = useState([]);
 
   const getCharacters = async (pageNumber) => {
 
@@ -35,13 +33,11 @@ function App() {
   }, [currentPage]);
 
   return (
-    <>
-      <FavouritesContext.Provider value={favourites}>
-        <Header />
-        <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
-        <CharacterContainer characters={characters} />
-      </FavouritesContext.Provider>
-    </>
+    <FavouritesProvider>
+      <Header />
+      <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <CharacterContainer characters={characters} />
+    </FavouritesProvider>
   );
 }
 
