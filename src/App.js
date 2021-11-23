@@ -21,6 +21,9 @@ function App() {
     setCharacters(characterResults.data.data);
   };
 
+  // These two useEffect's could be combined into one
+  // They are split out so that it outlines how the dependencies
+  // operate.
   // This is called on first load
   useEffect(() => {
     getCharacters(1);
