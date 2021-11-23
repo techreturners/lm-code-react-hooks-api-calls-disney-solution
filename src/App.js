@@ -8,8 +8,8 @@ import { useState, useEffect } from 'react';
 
 function App() {
 
-  // Maybe make use of useContext for a collection of 
-  // favourite characters
+  // Why not make use of useContext for a collection of 
+  // favourite characters?
 
   const [characters, setCharacters] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,11 +33,11 @@ function App() {
   }, [currentPage]);
 
   return (
-    <>
+    <div className="page">
       <Header />
       <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <CharacterContainer characters={characters} />
-    </>
+    </div>
   );
 }
 

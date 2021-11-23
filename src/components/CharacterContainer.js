@@ -1,6 +1,6 @@
 import Character from './Character';
 
-function CharacterContainer({characters}) {
+function CharacterContainer({ characters }) {
 
     const buildRows = () => {
         let rows = [], cols = [];
@@ -17,7 +17,7 @@ function CharacterContainer({characters}) {
         });
 
         // Final remaining cols 
-        if(cols.length > 0 ) {
+        if (cols.length > 0) {
             rows.push(
                 <div className="character-row" key={characters.length}>
                     {cols}
@@ -33,6 +33,6 @@ function CharacterContainer({characters}) {
             {buildRows()}
         </div>
     )
-  }
-  
-  export default CharacterContainer
+}
+
+export default CharacterContainer

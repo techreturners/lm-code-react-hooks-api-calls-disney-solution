@@ -1,4 +1,4 @@
-function Navigation({currentPage, setCurrentPage}) {
+function Navigation({ currentPage, setCurrentPage }) {
 
     const nextPage = () => {
         const newPageNumber = currentPage + 1;
@@ -6,7 +6,7 @@ function Navigation({currentPage, setCurrentPage}) {
     }
 
     const prevPage = () => {
-        if(currentPage > 1 ) {
+        if (currentPage > 1) {
             const newPageNumber = currentPage - 1;
             setCurrentPage(newPageNumber);
         }
@@ -14,18 +14,18 @@ function Navigation({currentPage, setCurrentPage}) {
 
     return (
         <div className="navigation">
-            <div className="navigation-item">
-                <button className="navigation-button" onClick={prevPage}>Prev Page</button>
+            <div className="navigation__item">
+                <button className="navigation__button" onClick={prevPage}>Prev Page</button>
             </div>
-            <div className="navigation-item">
-                <button className="navigation-button" onClick={prevPage}>Show Favourites</button>
+            <div className="navigation__item">
+                <button className="navigation__button" onClick={prevPage}>Show Favourites</button>
             </div>
-            <div className="navigation-item">
-                <button className="navigation-button" onClick={nextPage}>Next Page</button>
+            <div className="navigation__item">
+                <button className="navigation__button" onClick={nextPage}>Next Page</button>
             </div>
         </div>
-        
+
     )
-  }
-  
-  export default Navigation
+}
+
+export default Navigation
