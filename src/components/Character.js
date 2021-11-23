@@ -15,15 +15,14 @@ function Character({ character }) {
 
   return (
     <article className="character-item">
-      <div>
-        <h1>{character.name}</h1>
-      </div>
+
+        <h2>{character.name}</h2>
+
       <div className="character-item__actions" onClick={() => toggleFavourites(character._id)}>
         {isFavourite ? 'Favourited' : 'Add to Favourites'}
       </div>
-      <div>
+
         <img className="character-item__img" src={imageSrc} alt={character.name} />
-      </div>
 
     </article>
   )
