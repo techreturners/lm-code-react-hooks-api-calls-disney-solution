@@ -14,7 +14,13 @@
 }
 
 .header__title {
-  font-size: 5vw;
+  font-size: 5em;
+  margin: 5px;
+}
+
+.header__page-count {
+  font-size: 1.8em;
+  margin: 5px;
 }
 
 .navigation {
@@ -49,9 +55,15 @@
   text-align: center;
 }
 
-@media (max-width: 400px) {
-  .character-row {
-    display: block;
+@media (max-width: 675px) {
+  .page {
+    margin: 0;
+    font-family: "Mouse Memoirs";
+  }
+
+  .header__title {
+    font-size: 3.5em;
+    margin: 5px;
   }
 }
 

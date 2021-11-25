@@ -38,7 +38,7 @@ function App() {
   return (
     <div className="page">
       <FavouritesProvider>
-        <Header />
+        <Header currentPage={currentPage} />
         <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
         <CharacterContainer characters={characters} />
       </FavouritesProvider>
