@@ -1,4 +1,9 @@
-function Navigation({ currentPage, setCurrentPage }) {
+
+// our props have two properties - a number, and a function that takes a number and returns void
+// we can define this as an interface, or anonymously like this:
+const Navigation : React.FC<{ currentPage: number, setCurrentPage: (page: number) => void }> 
+	= ({ currentPage, setCurrentPage }) => 
+	{
 
     const nextPage = () => {
         const newPageNumber = currentPage + 1;
@@ -28,4 +33,4 @@ function Navigation({ currentPage, setCurrentPage }) {
     )
 }
 
-export default Navigation
+export default Navigation;
