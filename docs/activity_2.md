@@ -1,7 +1,5 @@
 # Activity 2 - Character Pagination
 
-## Character pagination
-
 You might have noticed the **Next** and **Previous** buttons.
 
 👉 Try giving the `Next` and `Previous` buttons a click.
