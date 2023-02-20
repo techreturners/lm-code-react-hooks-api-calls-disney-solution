@@ -194,7 +194,7 @@ Moving on to [activity 2](./activity_2.md).
 
 🙋🏻 At this point your `App.tsx` should look similar to this:
 
-```TypeScript
+```JSX
 
 import './App.css';
 import React, { useState } from 'react';

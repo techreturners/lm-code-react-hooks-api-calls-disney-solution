@@ -69,7 +69,11 @@ So you've defined two props called **characterFavourites** and **updateFavourite
 You'll see this line of code:
 
 ```JSX
-cols.push(<Character key={character._id} character={character} />);
+    <div className="card-container">
+      {characters.map((character) => (
+        <Character key={character._id} character={character} />
+      ))}
+    </div>
 ```
 
 That is where the **Character** component is defined and utilised. Let's update that to pass on the props.
@@ -77,13 +81,16 @@ That is where the **Character** component is defined and utilised. Let's update 
 👉 Update the line to read
 
 ```JSX
-cols.push(
-    <Character key={character._id}
+    <div className="card-container">
+      {characters.map((character) => (
+        <Character 
+                key={character._id}
                 character={character}
                 characterFavourites={characterFavourites}
                 updateFavourites={updateFavourites}
-    />
-);
+        />
+      ))}
+    </div>
 ```
 
 Ahhhh! Now we need to update the `Character` props too to accept our new props.
@@ -162,7 +169,7 @@ Attach an onClick listener
 👉 Attach a click listener to the corresponding `div`
 
 ```JSX
-<div className="character-item__actions" onClick={() => toggleFavouriteForCharacter(character._id)}>
+<div className="card__actions" onClick={() => toggleFavouriteForCharacter(character._id)}>
   Add to Favourites
 </div>
 ```
@@ -178,7 +185,7 @@ Let's use some [conditional rendering](https://reactjs.org/docs/conditional-rend
 👉 Update the **Add to favourites** div to read
 
 ```JSX
-<div className="character-item__actions" onClick={() => toggleFavouriteForCharacter(character._id)}>
+<div className="card__actions" onClick={() => toggleFavouriteForCharacter(character._id)}>
   {!characterFavourites.includes(character._id) ? "Add to Favourites" : "Favourited"}
 </div>
 ```

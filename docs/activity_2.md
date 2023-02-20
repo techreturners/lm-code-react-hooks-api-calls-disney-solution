@@ -44,7 +44,7 @@ The useEffect hook
 
 👉 We can use the **useEffect** hook again to attach an action to the **currentPage** changing. Update your useEffect definition, let's remove that hard coding of the pageNumber being 1 and utilise the **currentPage** variable.
 
-```TypeScript
+```JSX
 useEffect(() => {
   getCharacters(currentPage);
 }, [currentPage]);

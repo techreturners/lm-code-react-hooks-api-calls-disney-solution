@@ -1,4 +1,4 @@
-# Activity 5 - Avoid Prop Drilling with useContext
+# Activity 4 - Avoid Prop Drilling with useContext
 
 ## Prop drilling 👷🚧
 
@@ -78,7 +78,7 @@ return (
   );
 ```
 
-👉 Open up your [CharacterContainer](../src/components/character_container.js) and we can remove the **characterFavourites** prop from there also. In order to do this we firstly remove it from the interface:
+👉 Open up your [CharacterContainer](../src/components/character_container.tsx) and we can remove the **characterFavourites** prop from there also. In order to do this we firstly remove it from the interface:
 
 ```JSX
 interface CharacterContainerProps{
@@ -86,7 +86,6 @@ interface CharacterContainerProps{
 	// removed characterFavourites
 	updateFavourites: (favourites: Array<number>) => void;
 }
-
 ```
 
 This will immediately break everything! We have to remove the prop we're passing to CharacterContainer, the prop we're passing to `Character`, make the same change to the interface in `Character`, and so on...
@@ -94,24 +93,28 @@ This will immediately break everything! We have to remove the prop we're passing
 ```JSX
 // character_container.jsx
 
-interface CharacterContainerProps{
-	characters: Array<DisneyCharacter>;
-	updateFavourites: (favourites: Array<number>) => void;
+interface CharacterContainerProps {
+  characters: Array<DisneyCharacter>;
+  updateFavourites: (favourites: Array<number>) => void;
 }
 
-const CharacterContainer : React.FC<CharacterContainerProps> = ( { characters, updateFavourites }) => {
+const CharacterContainer: React.FC<CharacterContainerProps> = ({
+  characters,
+  updateFavourites
+}) => {
+  
+  return (
+    <div className="card-container">
+      {page.map((character) => (
+        <Character key={character._id} 
+                   character={character}
+                   updateFavourites={updateFavourites}/>
+      ))}
+    </div>
+  );
+};
 
-	// this function separates our array of DisneyCharacters into rows and columns
-    const buildRows = () => {
-
-		// we'll need arrays to store the rows and cols in, and they will be of type JSX.Element
-		let rows : Array<JSX.Element> = [], cols : Array<JSX.Element> = [];
-
-		characters.forEach((character, index) => {
-            cols.push(<Character key={character._id} character={character}
-                updateFavourites={updateFavourites} />);
-
-// rest of file...
+export default CharacterContainer;
 
 ```
 
@@ -137,7 +140,7 @@ Now you need to import the React **useContext** hook and utilise it. At the same
 
 👉 Introduce the import at the top of your **Character** component
 
-```TypeScript
+```JSX
 import React, { useContext } from 'react';
 import { FavouritesContext } from '../App';
 ```
@@ -189,23 +192,20 @@ Time to put all this learning into practice!
 
 
 
-
 ## Sample code files - for if you get stuck!
 
 #### App.tsx
 
 ```JSX
-
 import './App.css';
 import React, { useState } from 'react';
 import Header from './components/header';
 import CharacterContainer from './components/character_container';
 import Navigation from './components/navigation';
 import { DisneyCharacter } from './disney_character';
-import axios from 'axios';
 import { useEffect } from 'react';
 
-export const FavouritesContext = React.createContext<number[]>( []);
+export const FavouritesContext = React.createContext<number[]>([]);
 
 const App : React.FC = () => {
 
@@ -241,60 +241,35 @@ const App : React.FC = () => {
 }
 
 export default App;
-
 ```
 
 #### CharacterContainer.js
 
 ```JSX
-import React from 'react';
-import { DisneyCharacter } from '../disney_character';
-import Character from './character';
+import React from "react";
+import { DisneyCharacter } from "../disney_character";
+import Character from "./character";
 
-interface CharacterContainerProps{
-	characters: Array<DisneyCharacter>;
-	updateFavourites: (favourites: Array<number>) => void;
+interface CharacterContainerProps {
+  characters: Array<DisneyCharacter>;
+  updateFavourites: (favourites: Array<number>) => void;
 }
 
-const CharacterContainer : React.FC<CharacterContainerProps> = ( { characters, updateFavourites }) => {
+const CharacterContainer: React.FC<CharacterContainerProps> = ({
+  characters, updateFavourites
+}) => {
+  
+  const { favourites, isFavouritesPage } = useFavourites();
+  const page = !isFavouritesPage ? characters : favourites;
 
-	// this function separates our array of DisneyCharacters into rows and columns
-    const buildRows = () => {
-
-		// we'll need arrays to store the rows and cols in, and they will be of type JSX.Element
-		let rows : Array<JSX.Element> = [], cols : Array<JSX.Element> = [];
-
-		characters.forEach((character, index) => {
-            cols.push(<Character key={character._id} character={character}
-                updateFavourites={updateFavourites} />);
-            if ((index + 1) % 5 === 0) {
-                rows.push(
-                    <div className="character-row" key={index}>
-                        {cols}
-                    </div>
-                )
-                cols = []
-            }
-        });
-
-        // Final remaining columns
-        if (cols.length > 0) {
-            rows.push(
-                <div className="character-row" key={characters.length}>
-                    {cols}
-                </div>
-            )
-        }
-
-        return rows;
-    }
-
-    return (
-        <div className="character-container">
-            {buildRows()}
-        </div>
-    )
-}
+  return (
+    <div className="card-container">
+      {page.map((character) => (
+        <Character key={character._id} character={character} updateFavourites={updateFavourites} />
+      ))}
+    </div>
+  );
+};
 
 export default CharacterContainer;
 ```
@@ -331,11 +306,11 @@ const Character : React.FC<CharacterProps> = ( { character, updateFavourites }) 
 
       <h2>{character.name}</h2>
 
-      <div className="character-item__actions"  onClick={() => toggleFavouriteForCharacter(character._id)}>
+      <div className="card__actions"  onClick={() => toggleFavouriteForCharacter(character._id)}>
 	  	{!characterFavourites.includes(character._id) ? "Add to Favourites" : "Favourited"}
       </div>
 
-      <img src={character.imageUrl} alt={character.name} />
+      <img className="card__img" src={character.imageUrl} alt={character.name} />
 
     </article>);
 }
