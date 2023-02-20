@@ -1,40 +1,28 @@
-import { DisneyCharacter } from "../disney_character"
-import React, { useContext } from 'react';
-import { FavouritesContext } from '../App';
+import { DisneyCharacter } from "../disney_character";
+import { useFavourites } from "../fav_char_context";
 
-interface CharacterProps{
-	character: DisneyCharacter;	
-	updateFavourites: (favourites: Array<number>) => void;
+interface CharacterProps {
+  character: DisneyCharacter;
 }
 
-const Character : React.FC<CharacterProps> = ( { character, updateFavourites }) => {
-
-	const characterFavourites = useContext(FavouritesContext);
-
-	function toggleFavouriteForCharacter(characterId : number) {
-		if(!characterFavourites.includes(characterId)) {
-			// add to favourites
-			updateFavourites([...characterFavourites, characterId]);
-		}
-		else {
-		  // remove from favourites
-		  const updatedFavourites = characterFavourites.filter((id) => id !== characterId);
-		  updateFavourites(updatedFavourites);
-		}
-	  }
+const Character: React.FC<CharacterProps> = ({ character }) => {
   
-    return(<article className="character-item">
+  const { favourites, toggleFavourites } = useFavourites();
 
+  return (
+    <article className="card">
       <h2>{character.name}</h2>
 
-      <div className="character-item__actions"  onClick={() => toggleFavouriteForCharacter(character._id)}>
-	  	{!characterFavourites.includes(character._id) ? "Add to Favourites" : "Favourited"}
+      <div
+        className="card__actions"
+        onClick={() => toggleFavourites(character)}
+      >
+        {!favourites.includes(character) ? "Add to favourites" : "Favourite"}
       </div>
 
-      <img className="character-item__img" src={character.imageUrl} alt={character.name} />
-
-    </article>);
-}
-
+      <img className="card__img" src={character.imageUrl} alt={character.name} />
+    </article>
+  );
+};
 
 export default Character;
