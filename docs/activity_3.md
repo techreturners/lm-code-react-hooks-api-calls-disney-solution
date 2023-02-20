@@ -169,7 +169,7 @@ Attach an onClick listener
 👉 Attach a click listener to the corresponding `div`
 
 ```JSX
-<div className="card__actions" onClick={() => toggleFavouriteForCharacter(character._id)}>
+<div className="card__button" onClick={() => toggleFavouriteForCharacter(character._id)}>
   Add to Favourites
 </div>
 ```
@@ -185,7 +185,7 @@ Let's use some [conditional rendering](https://reactjs.org/docs/conditional-rend
 👉 Update the **Add to favourites** div to read
 
 ```JSX
-<div className="card__actions" onClick={() => toggleFavouriteForCharacter(character._id)}>
+<div className="card__button" onClick={() => toggleFavouriteForCharacter(character._id)}>
   {!characterFavourites.includes(character._id) ? "Add to Favourites" : "Favourited"}
 </div>
 ```

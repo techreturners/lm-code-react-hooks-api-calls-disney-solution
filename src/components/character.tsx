@@ -13,12 +13,12 @@ const Character: React.FC<CharacterProps> = ({ character }) => {
     <article className="card">
       <h2>{character.name}</h2>
 
-      <div
-        className="card__actions"
+      <button
+        className="card__button"
         onClick={() => toggleFavourites(character)}
       >
         {!favourites.includes(character) ? "Add to favourites" : "Favourite"}
-      </div>
+      </button>
 
       <img className="card__img" src={character.imageUrl} alt={character.name} />
     </article>

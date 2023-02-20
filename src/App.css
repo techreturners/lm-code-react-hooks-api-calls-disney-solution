@@ -70,11 +70,14 @@
   max-height: 250px;
 }
 
-.card__actions {
-  font-size: 1.3em;
-  padding: 10px;
-  cursor: pointer;
+.card__button {
+  font-family: "Mouse Memoirs";
+  outline: none;
+  background: transparent;
+  border: 1px solid transparent;
   font-weight: lighter;
+  font-size: 1.3em;
+  cursor: pointer;
 }
 
 @media (max-width: 675px) {
