@@ -1,50 +1,26 @@
-import React from 'react';
-import { DisneyCharacter } from '../disney_character';
-import Character from './character';
+import React from "react";
+import { DisneyCharacter } from "../disney_character";
+import Character from "./character";
+import { useFavourites } from "../fav_char_context";
 
-interface CharacterContainerProps{ 
-	characters: Array<DisneyCharacter>;	
-	updateFavourites: (favourites: Array<number>) => void;
+interface CharacterContainerProps {
+  characters: Array<DisneyCharacter>;
 }
 
-const CharacterContainer : React.FC<CharacterContainerProps> = ( { characters, updateFavourites }) => {
+const CharacterContainer: React.FC<CharacterContainerProps> = ({
+  characters,
+}) => {
+  
+  const { favourites, isFavouritesPage } = useFavourites();
+  const page = !isFavouritesPage ? characters : favourites;
 
-	// this function separates our array of DisneyCharacters into rows and columns
-    const buildRows = () => {
-        
-		// we'll need arrays to store the rows and cols in, and they will be of type JSX.Element
-		let rows : Array<JSX.Element> = [], cols : Array<JSX.Element> = [];
-        
-		characters.forEach((character, index) => {
-            cols.push(<Character key={character._id} character={character} 
-                updateFavourites={updateFavourites} />);
-            if ((index + 1) % 5 === 0) {
-                rows.push(
-                    <div className="character-row" key={index}>
-                        {cols}
-                    </div>
-                )
-                cols = []
-            }
-        });
-
-        // Final remaining columns
-        if (cols.length > 0) {
-            rows.push(
-                <div className="character-row" key={characters.length}>
-                    {cols}
-                </div>
-            )
-        }
-
-        return rows;
-    }
-
-    return (
-        <div className="character-container">
-            {buildRows()}
-        </div>
-    )
-}
+  return (
+    <div className="card-container">
+      {page.map((character) => (
+        <Character key={character._id} character={character} />
+      ))}
+    </div>
+  );
+};
 
 export default CharacterContainer;
