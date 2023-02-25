@@ -1,4 +1,4 @@
-# The World of Disney React App - Solution Code
+# The World of Disney React App - Solution Code ✨
 
 ## Introduction
 
